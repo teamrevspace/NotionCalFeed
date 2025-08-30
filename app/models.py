@@ -7,6 +7,30 @@ from typing import Optional, List, Dict, Any
 from datetime import datetime
 from enum import Enum
 
+
+class NotionPropertyType(str, Enum):
+    """Notion property types"""
+    TITLE = "title"
+    RICH_TEXT = "rich_text"
+    DATE = "date"
+    SELECT = "select"
+    MULTI_SELECT = "multi_select"
+    CHECKBOX = "checkbox"
+    URL = "url"
+    EMAIL = "email"
+    PHONE_NUMBER = "phone_number"
+    NUMBER = "number"
+    FORMULA = "formula"
+    ROLLUP = "rollup"
+    RELATION = "relation"
+    PEOPLE = "people"
+    FILES = "files"
+    CREATED_TIME = "created_time"
+    CREATED_BY = "created_by"
+    LAST_EDITED_TIME = "last_edited_time"
+    LAST_EDITED_BY = "last_edited_by"
+
+
 class CalendarEvent(BaseModel):
     """Represents a calendar event from Notion"""
     
