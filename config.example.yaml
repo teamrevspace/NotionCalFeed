@@ -1,0 +1,95 @@
+# Notion ICS Calendar Feed Server Configuration
+
+# Notion API Configuration
+notion:
+  api_token: ${NOTION_TOKEN}  # Set via environment variable
+  api_version: "2022-06-28"
+  timeout: 30
+
+# Calendar View Configurations
+# Each key becomes a URL endpoint: /calendar/{key}.ics
+calendar_views:
+  
+  # Example: Personal calendar view
+  personal:
+    database_id: "your-notion-database-id-here"
+    date_property: "Date"  # Name of the date property in your Notion database
+    title_property: "Name"  # Property to use for event titles
+    title_prefix: "[Personal] "  # Optional: string prepended to every event title
+    description_property: "Description"  # Optional: property for event descriptions
+    location_property: "Location"  # Optional: property for event location
+    url_property: "URL"  # Optional: property for event URLs
+    
+    # Query settings - leave unset for full calendar (no bounds)
+    # If only one is set, the other side is unbounded
+    # query_days_back: 30      # e.g., last 30 days and all future
+    # query_days_forward: 365  # e.g., all past and next 365 days
+    
+    # Calendar settings
+    calendar_name: "Personal Calendar"
+    calendar_description: "My personal events from Notion"
+    timezone: "America/New_York"  # Timezone for date/time interpretation
+    
+    # Optional: Additional Notion API filters
+    # filters:
+    #   property: "Status"
+    #   select:
+    #     equals: "Confirmed"
+  
+  # Example: Work calendar view
+  work:
+    database_id: "your-work-database-id-here"
+    date_property: "Event Date"
+    title_property: "Title"
+    title_prefix: "[Work] "
+    description_property: "Notes"
+    location_property: "Meeting Room"
+    
+    # One-sided example: only future 180 days (all past included if back unset)
+    # query_days_forward: 180
+    
+    calendar_name: "Work Calendar"
+    calendar_description: "Work events and meetings"
+    timezone: "America/Los_Angeles"
+    
+    # Example filter: only show events marked as "Published"
+    filters:
+      property: "Status"
+      select:
+        equals: "Published"
+  
+  # Example: Project deadlines
+  deadlines:
+    database_id: "your-deadlines-database-id-here"
+    date_property: "Due Date"
+    title_property: "Task"
+    description_property: "Requirements"
+    
+    # Only future deadlines example:
+    # query_days_back: 0
+    # query_days_forward: 90   # Next 3 months
+    
+    calendar_name: "Project Deadlines"
+    timezone: "UTC"
+    
+    # Filter for high-priority items only
+    filters:
+      property: "Priority"
+      select:
+        equals: "High"
+
+# Server Configuration (optional - can be overridden by environment variables)
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+
+# Logging Configuration
+log_level: "INFO"
+
+# ICS Generator Settings
+ics_prodid: "notion-ics-server//EN"
+
+# Example of how to set up different environments:
+# You can create multiple config files like config.dev.yaml, config.prod.yaml
+# and load them based on environment variables
