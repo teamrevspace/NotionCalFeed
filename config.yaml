@@ -1,0 +1,30 @@
+# Notion ICS Calendar Feed Server Configuration
+
+# Notion API Configuration
+notion:
+  api_token: ${NOTION_TOKEN}  # Set via environment variable
+  api_version: "2022-06-28"
+  timeout: 30
+
+# Calendar View Configurations
+# Each key becomes a URL endpoint: /calendar/{key}.ics
+calendar_views:
+  Calendar:
+    database_id: "cfabd332512146bb998b8dc846711744"
+    date_property: "Date"  # Name of the date property in your Notion database
+    title_property: "Name"  # Property to use for event titles
+    location_property: "Location"
+    query_days_back: 90
+    title_prefix: "(rev) "
+
+# Server Configuration (optional - can be overridden by environment variables)
+server:
+  host: "0.0.0.0"
+  port: 8000
+  reload: false
+
+# Logging Configuration
+log_level: "INFO"
+
+# ICS Generator Settings
+ics_prodid: "notion-ics-server//EN"
