@@ -1,5 +1,5 @@
 # Railway deployment configuration for Notion ICS Calendar Feed Server
 
 run:
-  command: uv run run_server.py
+  command: run-server
   port: 8000

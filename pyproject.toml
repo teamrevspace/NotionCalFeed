@@ -1,7 +1,7 @@
 [project]
 name = "notioncalfeed"
 version = "0.1.0"
-description = "Add your description here"
+description = "Notion ICS Calendar Feed Server"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -15,3 +15,6 @@ dependencies = [
     "pyyaml>=6.0.2",
     "uvicorn>=0.35.0",
 ]
+
+[project.scripts]
+run-server = "run_server:main"
