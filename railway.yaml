@@ -1,25 +1,5 @@
 # Railway deployment configuration for Notion ICS Calendar Feed Server
 
-build:
-  # Use Python 3.11 as the base image
-  builder: paketobuildpacks/builder:base
-
-# Run configuration
 run:
-  # Command to start the server
-  command: python run_server.py
-  # Port the application listens on
+  command: uv run run_server.py
   port: 8000
-
-# Environment variables (can be overridden in Railway dashboard)
-env:
-  # Notion API token - set this in Railway dashboard
-  NOTION_TOKEN: ""
-  # Server configuration
-  SERVER_HOST: "0.0.0.0"
-  SERVER_PORT: "8000"
-  SERVER_RELOAD: "false"
-  # Notion API version
-  NOTION_VERSION: "2022-06-28"
-  # Logging level
-  LOG_LEVEL: "INFO"
