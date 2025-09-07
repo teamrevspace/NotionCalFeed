@@ -1,9 +1,0 @@
-fastapi==0.104.1
-uvicorn==0.24.0
-notion-client==2.2.1
-ics==0.7.2
-python-dotenv==1.0.0
-pydantic==2.5.0
-PyYAML==6.0.1
-python-dateutil==2.8.2
-pytz==2023.3
